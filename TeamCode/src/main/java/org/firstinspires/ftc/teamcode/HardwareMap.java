@@ -61,6 +61,7 @@ public class HardwareMap
     public DcMotor rightDriveF = null;// = opMode.hardwareMap.get(DcMotor.class, "right_drive1");
     public DcMotor leftDriveR = null;// = opMode.hardwareMap.get(DcMotor.class, "left_drive2");
     public  DcMotor rightDriveR = null;// = opMode.hardwareMap.get(DcMotor.class, "right_dri
+    public DcMotor intake  null;
 
     /* local OpMode members. */
     com.qualcomm.robotcore.hardware.HardwareMap hwMap = null;
@@ -81,6 +82,7 @@ public class HardwareMap
         rightDriveF = hwMap.get(DcMotor.class, "right_drive1");
         leftDriveR = hwMap.get(DcMotor.class, "left_drive2");
         rightDriveR = hwMap.get(DcMotor.class, "right_drive3");
+        intake  = hwMap.get(DcMotor.class, "intake");
 
         //leftArm    = hwMap.get(DcMotor.class, "left_arm");
         //motorFrontLeft.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
@@ -91,6 +93,7 @@ public class HardwareMap
         rightDriveF.setPower(0.00);
         leftDriveR.setPower(0.00);
         rightDriveR.setPower(0.00);
+        intake.setPower(0.0);
         //leftArm.setPower(0);
 
         // Set all motors to run without encoders.

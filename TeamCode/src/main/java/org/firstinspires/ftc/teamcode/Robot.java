@@ -59,6 +59,7 @@ public class Robot extends OpMode
 
     private Drivetrain drive;
     public static HardwareMap robotMap = new HardwareMap();
+    private Intake intake;
 
 
     /*
@@ -69,7 +70,7 @@ public class Robot extends OpMode
         telemetry.addData("Status", "Initialized");
         robotMap.init(hardwareMap);
         drive = new Drivetrain();
-        intake = new intake();
+        intake = new Intake();
 
         //drive.init();
         drive.stop();
@@ -110,7 +111,7 @@ public class Robot extends OpMode
     public void loop() {
 
         drive.setDrive(gamepad1.left_stick_y, gamepad1.left_stick_x, 1.00);
-        intake.setIntake(gamepad1.x, 1.00)
+        intake.setIntake(gamepad1.x, 1.00);
 
 
         // Show the elapsed game time and wheel power.

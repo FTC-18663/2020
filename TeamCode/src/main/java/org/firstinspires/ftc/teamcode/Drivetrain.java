@@ -12,7 +12,6 @@ public class Drivetrain {
 
     }
 
-
     public void setDrive(double fwd, double rot, double maxSpeed){
         double leftPower = (fwd + rot) * maxSpeed;
         double rightPower = (fwd - rot) * maxSpeed;

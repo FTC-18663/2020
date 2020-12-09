@@ -13,7 +13,7 @@ public class Carousel {
     }
 
 
-    public void setIntake(boolean x, double Speed){
+    public void setCarousel(boolean x, double Speed){
         if(x) {
             Robot.robotMap.carousel.setPower(Speed);
         }

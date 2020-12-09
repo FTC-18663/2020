@@ -114,7 +114,7 @@ public class Robot extends OpMode
 
         drive.setDrive(gamepad1.left_stick_y, gamepad1.left_stick_x, 1.00);
         intake.setIntake(gamepad1.x, 1.00);
-        carousel.setCarousel(gamepad1.x, 1.00)
+        carousel.setCarousel(gamepad1.x, 1.00);
 
 
         // Show the elapsed game time and wheel power.

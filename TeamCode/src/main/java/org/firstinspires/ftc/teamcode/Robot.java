@@ -59,6 +59,11 @@ public class Robot extends OpMode
 
     private Drivetrain drive;
     public static HardwareMap robotMap = new HardwareMap();
+<<<<<<< Updated upstream
+=======
+    private Intake intake;
+    private Carousel carousel;
+>>>>>>> Stashed changes
 
 
     /*
@@ -69,7 +74,12 @@ public class Robot extends OpMode
         telemetry.addData("Status", "Initialized");
         robotMap.init(hardwareMap);
         drive = new Drivetrain();
+<<<<<<< Updated upstream
         intake = new intake();
+=======
+        intake = new Intake();
+        carousel = new Carousel();
+>>>>>>> Stashed changes
 
         //drive.init();
         drive.stop();

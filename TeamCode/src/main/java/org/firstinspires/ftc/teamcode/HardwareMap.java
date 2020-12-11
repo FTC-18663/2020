@@ -60,6 +60,7 @@ public class HardwareMap
     public DcMotor leftDriveF = null;//  = opMode.hardwareMap.get(DcMotor.class, "left_drive0");
     public DcMotor rightDriveF = null;// = opMode.hardwareMap.get(DcMotor.class, "right_drive1");
     public DcMotor leftDriveR = null;// = opMode.hardwareMap.get(DcMotor.class, "left_drive2");
+
     public  DcMotor rightDriveR = null;// = opMode.hardwareMap.get(DcMotor.class, "right_dri
     public DcMotor intake = null;
     public DcMotor carousel = null;
@@ -83,6 +84,7 @@ public class HardwareMap
         rightDriveF = hwMap.get(DcMotor.class, "right_drive1");
         leftDriveR = hwMap.get(DcMotor.class, "left_drive2");
         rightDriveR = hwMap.get(DcMotor.class, "right_drive3");
+
         intake  = hwMap.get(DcMotor.class, "intake");
         carousel = hwMap.get(DcMotor.class, "carousel");
 
@@ -96,6 +98,7 @@ public class HardwareMap
         leftDriveR.setPower(0.00);
         rightDriveR.setPower(0.00);
         intake.setPower(0.0);
+
         carousel.setPower(0.0);
         //leftArm.setPower(0);
 
@@ -111,6 +114,6 @@ public class HardwareMap
 //        leftClaw  = hwMap.get(Servo.class, "left_hand");
 //        rightClaw = hwMap.get(Servo.class, "right_hand");
 //        leftClaw.setPosition(MID_SERVO);
-//        rightClaw.setPosition(MID_SERVO);
+//        rightClaw.setPosition(MID_SERVO)
     }
 }

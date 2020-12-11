@@ -60,6 +60,7 @@ public class Robot extends OpMode
     private Drivetrain drive;
     public static HardwareMap robotMap = new HardwareMap();
     private Intake intake;
+    private Carousel carousel;
 
 
     /*
@@ -71,6 +72,7 @@ public class Robot extends OpMode
         robotMap.init(hardwareMap);
         drive = new Drivetrain();
         intake = new Intake();
+        carousel = new Carousel();
 
         //drive.init();
         drive.stop();
@@ -112,6 +114,7 @@ public class Robot extends OpMode
 
         drive.setDrive(gamepad1.left_stick_y, gamepad1.left_stick_x, 1.00);
         intake.setIntake(gamepad1.x, 1.00);
+        carousel.setCarousel(gamepad1.x, 1.00);
 
 
         // Show the elapsed game time and wheel power.

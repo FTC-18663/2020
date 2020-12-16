@@ -2,6 +2,10 @@ org/firstinspires/ftc/teamcode/Robot.java
  org.firstinspires.ftc.teamcode.Robot
 org/firstinspires/ftc/teamcode/Drivetrain.java
  org.firstinspires.ftc.teamcode.Drivetrain
+org/firstinspires/ftc/teamcode/Carousel.java
+ org.firstinspires.ftc.teamcode.Carousel
+org/firstinspires/ftc/teamcode/Intake.java
+ org.firstinspires.ftc.teamcode.Intake
 org/firstinspires/ftc/teamcode/BuildConfig.java
  org.firstinspires.ftc.teamcode.BuildConfig
 org/firstinspires/ftc/teamcode/HardwareMap.java

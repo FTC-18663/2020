@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/2020.iml" filepath="$PROJECT_DIR$/.idea/modules/2020.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/FtcRobotController/2020.FtcRobotController.iml" filepath="$PROJECT_DIR$/.idea/modules/FtcRobotController/2020.FtcRobotController.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/TeamCode/2020.TeamCode.iml" filepath="$PROJECT_DIR$/.idea/modules/TeamCode/2020.TeamCode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FtcRobotController/GitHub.2020.FtcRobotController.iml" filepath="$PROJECT_DIR$/.idea/modules/FtcRobotController/GitHub.2020.FtcRobotController.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TeamCode/GitHub.2020.TeamCode.iml" filepath="$PROJECT_DIR$/.idea/modules/TeamCode/GitHub.2020.TeamCode.iml" />
     </modules>
   </component>
 </project>

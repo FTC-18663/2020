@@ -21,7 +21,7 @@ public class Carousel {
             Robot.robotMap.carousel.setPower(0.00);
         }
 
-        // telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
+        //telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
     }
 
     public void stop() {

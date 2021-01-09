@@ -59,7 +59,8 @@ public class Robot extends OpMode
 
     private Drivetrain drive;
     public static HardwareMap robotMap = new HardwareMap();
-    private Intake intake;
+    private Arm arm;
+    private Wrist wrist;
     private Carousel carousel;
 
 
@@ -71,7 +72,8 @@ public class Robot extends OpMode
         telemetry.addData("Status", "Initialized");
         robotMap.init(hardwareMap);
         drive = new Drivetrain();
-        intake = new Intake();
+        arm = new Arm();
+        wrist = new Wrist();
         carousel = new Carousel();
 
         //drive.init();
@@ -113,7 +115,8 @@ public class Robot extends OpMode
     public void loop() {
 
         drive.setDrive(gamepad1.left_stick_y, gamepad1.left_stick_x, 1.00);
-        intake.setIntake(gamepad1.x, 1.00);
+        arm.setArm(gamepad1.right_trigger, gamepad1.left_trigger, 1.00);
+        wrist.setWrist(gamepad1.dpad_up, gamepad1.dpad_down, 1.00);
         carousel.setCarousel(gamepad1.x, 1.00);
 
 

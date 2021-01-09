@@ -18,7 +18,7 @@ public class Wrist {
             Robot.robotMap.wrist.setPower(Speed);
         }
         if(down) {
-            Robot.robotMap.wrist.setPower(Speed);
+            Robot.robotMap.wrist.setPower(-Speed);
         }
         else{
             Robot.robotMap.wrist.setPower(0.00);

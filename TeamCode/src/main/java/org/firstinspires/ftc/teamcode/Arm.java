@@ -18,7 +18,7 @@ public class Arm {
             Robot.robotMap.arm.setPower(rt*Speed);
         }
         if(lt>.03) {
-            Robot.robotMap.arm.setPower(lt*Speed);
+            Robot.robotMap.arm.setPower(-lt*Speed);
         }
         else{
             Robot.robotMap.arm.setPower(0.00);

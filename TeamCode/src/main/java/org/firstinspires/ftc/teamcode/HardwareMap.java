@@ -60,11 +60,10 @@ public class HardwareMap
     public DcMotor leftDriveF = null;//  = opMode.hardwareMap.get(DcMotor.class, "left_drive0");
     public DcMotor rightDriveF = null;// = opMode.hardwareMap.get(DcMotor.class, "right_drive1");
     public DcMotor leftDriveR = null;// = opMode.hardwareMap.get(DcMotor.class, "left_drive2");
-
     public  DcMotor rightDriveR = null;// = opMode.hardwareMap.get(DcMotor.class, "right_dri
     public DcMotor arm = null;
-    public DcMotor wrist = null;
-    public DcMotor carousel = null;
+    //public DcMotor wrist = null;
+    //public DcMotor carousel = null;
 
     /* local OpMode members. */
     com.qualcomm.robotcore.hardware.HardwareMap hwMap = null;
@@ -86,7 +85,7 @@ public class HardwareMap
         leftDriveR = hwMap.get(DcMotor.class, "left_drive2");
         rightDriveR = hwMap.get(DcMotor.class, "right_drive3");
         arm  = hwMap.get(DcMotor.class, "arm");
-        wrist  = hwMap.get(DcMotor.class, "wrist");
+        //wrist  = hwMap.get(DcMotor.class, "wrist");
 
 
         //leftArm    = hwMap.get(DcMotor.class, "left_arm");
@@ -99,7 +98,7 @@ public class HardwareMap
         leftDriveR.setPower(0.00);
         rightDriveR.setPower(0.00);
         arm.setPower(0.0);
-        wrist.setPower(0.0);
+        //wrist.setPower(0.0);
 
         //leftArm.setPower(0);
 

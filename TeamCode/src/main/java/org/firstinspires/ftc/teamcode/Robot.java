@@ -29,12 +29,11 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
+
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 
 /**
  * This file contains an example of an iterative (Non-Linear) "OpMode".
@@ -57,11 +56,9 @@ public class Robot extends OpMode
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
 
-    private Drivetrain drive;
     public static HardwareMap robotMap = new HardwareMap();
-    private Arm arm;
-    private Wrist wrist;
-    private Carousel carousel;
+    private Drivetrain m_drive;
+    private Arm m_arm;
 
 
     /*
@@ -70,14 +67,13 @@ public class Robot extends OpMode
     @Override
     public void init() {
         telemetry.addData("Status", "Initialized");
+
         robotMap.init(hardwareMap);
-        drive = new Drivetrain();
-        arm = new Arm();
-        wrist = new Wrist();
-        carousel = new Carousel();
+        m_drive = new Drivetrain();
+        m_arm = new Arm();
 
         //drive.init();
-        drive.stop();
+        m_drive.stop();
 
 
         // Initialize the hardware variables. Note that the strings used here as parameters
@@ -114,10 +110,12 @@ public class Robot extends OpMode
     @Override
     public void loop() {
 
-        drive.setDrive(gamepad1.left_stick_y, gamepad1.left_stick_x, 1.00);
-        arm.setArm(gamepad1.right_trigger, gamepad1.left_trigger, 1.00);
-        wrist.setWrist(gamepad1.dpad_up, gamepad1.dpad_down, 1.00);
-        carousel.setCarousel(gamepad1.x, 1.00);
+        m_drive.setDrive(gamepad1.left_stick_y, gamepad1.left_stick_x, 1.00);
+        m_arm.setTarget(gamepad1.dpad_down, 30);
+
+        telemetry.addData("Position", Robot.robotMap.arm.getCurrentPosition());
+        telemetry.addData("PID", m_arm.getCalcPID());
+        telemetry.addData("Error", m_arm.getArmError());
 
 
         // Show the elapsed game time and wheel power.
@@ -130,7 +128,7 @@ public class Robot extends OpMode
      */
     @Override
     public void stop() {
-        drive.stop();
+        m_drive.stop();
     }
 
 }

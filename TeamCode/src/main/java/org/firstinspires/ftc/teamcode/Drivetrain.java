@@ -15,13 +15,13 @@ public class Drivetrain {
 
 
     public void setDrive(double fwd, double rot, double maxSpeed){
-        double leftPower = (fwd + rot) * maxSpeed;
-        double rightPower = (fwd - rot) * maxSpeed;
+        double leftPower = (fwd - rot) * maxSpeed;
+        double rightPower = (fwd + rot) * maxSpeed;
 
-        Robot.robotMap.leftDriveF.setPower(-leftPower);
-        Robot.robotMap.rightDriveF.setPower(rightPower);
-        Robot.robotMap.leftDriveR.setPower(-leftPower);
-        Robot.robotMap.rightDriveR.setPower(rightPower);
+        Robot.robotMap.leftDriveF.setPower(leftPower);
+        Robot.robotMap.rightDriveF.setPower(-rightPower);
+        Robot.robotMap.leftDriveR.setPower(leftPower);
+        Robot.robotMap.rightDriveR.setPower(-rightPower);
 
        // telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
     }

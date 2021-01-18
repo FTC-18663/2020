@@ -19,9 +19,9 @@ public class Arm {
     public double armError = 0;
 
     public Arm() {
-        ourPID = new PID(0.004, 0.000, 0.001);
+        ourPID = new PID(0.4, 0.000, 0.00);
         runtime.reset();
-        Robot.robotMap.arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        Robot.robotMap.arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         Robot.robotMap.arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
@@ -56,23 +56,28 @@ public class Arm {
         // telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
     }
 
-    public void setTarget(boolean button, double encTarget) {
+    public void setTarget(boolean button, int encTarget) {
         double PID;
         double error;
 
         if(button) {
             PID = ourPID.calculatePID(encTarget, Robot.robotMap.arm.getCurrentPosition(), runtime.milliseconds());
             error = ourPID.getLastError();
-
+            Robot.robotMap.arm.setTargetPosition(encTarget);
+            Robot.robotMap.arm.setPower(0.75);
         } else {
             PID = ourPID.calculatePID(2, Robot.robotMap.arm.getCurrentPosition(), runtime.milliseconds());
             error = ourPID.getLastError();
-
-            Robot.robotMap.arm.setPower(PID / 128);
+            Robot.robotMap.arm.setTargetPosition(2);
+            Robot.robotMap.arm.setPower(0.20);
         }
 
         setCalcPID(PID);
         setArmError(error);
+
+//        Robot.robotMap.arm.setTargetPosition((int) PID);
+//        Robot.robotMap.arm.setPower(0.25);
+
 
 
 

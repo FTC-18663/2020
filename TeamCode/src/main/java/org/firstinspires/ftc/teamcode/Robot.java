@@ -111,7 +111,7 @@ public class Robot extends OpMode
     public void loop() {
 
         m_drive.setDrive(gamepad1.left_stick_y, gamepad1.left_stick_x, 1.00);
-        m_arm.setTarget(gamepad1.dpad_down, 30);
+        m_arm.setTarget(gamepad1.dpad_up, 100);
 
         telemetry.addData("Position", Robot.robotMap.arm.getCurrentPosition());
         telemetry.addData("PID", m_arm.getCalcPID());

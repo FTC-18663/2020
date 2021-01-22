@@ -57,19 +57,14 @@ public class Arm {
     }
 
     public void setTarget(boolean button, int encTarget) {
-        double PID;
-        double error;
+        double PID = 0.00;
+        double error = 0.00;
 
         if(button) {
             PID = ourPID.calculatePID(encTarget, Robot.robotMap.arm.getCurrentPosition(), runtime.milliseconds());
             error = ourPID.getLastError();
             Robot.robotMap.arm.setTargetPosition(encTarget);
-            Robot.robotMap.arm.setPower(0.75);
-        } else {
-            PID = ourPID.calculatePID(2, Robot.robotMap.arm.getCurrentPosition(), runtime.milliseconds());
-            error = ourPID.getLastError();
-            Robot.robotMap.arm.setTargetPosition(2);
-            Robot.robotMap.arm.setPower(0.20);
+            Robot.robotMap.arm.setPower(1.00);
         }
 
         setCalcPID(PID);

@@ -1,11 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
 
+import com.qualcomm.robotcore.hardware.DcMotor;
+
 public class Drivetrain {
 
 
     public Drivetrain() {
-
     }
 
     public void init() {
@@ -14,8 +15,8 @@ public class Drivetrain {
 
 
     public void setDrive(double fwd, double rot, double maxSpeed){
-        double leftPower = (fwd + rot) * maxSpeed;
-        double rightPower = (fwd - rot) * maxSpeed;
+        double leftPower = (fwd - rot) * maxSpeed;
+        double rightPower = (fwd + rot) * maxSpeed;
 
         Robot.robotMap.leftDriveF.setPower(leftPower);
         Robot.robotMap.rightDriveF.setPower(-rightPower);

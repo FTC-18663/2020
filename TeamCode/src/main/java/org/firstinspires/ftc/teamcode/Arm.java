@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.PIDCoefficients;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -45,6 +46,7 @@ public class Arm {
     public void setArm(double rt, double lt, double Speed){
         if(rt>.03) {
             Robot.robotMap.arm.setPower(rt*Speed);
+
         }
         if(lt>.03) {
             Robot.robotMap.arm.setPower(-lt*Speed);
@@ -56,15 +58,21 @@ public class Arm {
         // telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
     }
 
-    public void setTarget(boolean button, int encTarget) {
+    public void setTarget(boolean button, int encTarget, double power) {
         double PID = 0.00;
         double error = 0.00;
 
         if(button) {
             PID = ourPID.calculatePID(encTarget, Robot.robotMap.arm.getCurrentPosition(), runtime.milliseconds());
             error = ourPID.getLastError();
-            Robot.robotMap.arm.setTargetPosition(encTarget);
-            Robot.robotMap.arm.setPower(1.00);
+            if(encTarget < Robot.robotMap.arm.getCurrentPosition()) {
+                Robot.robotMap.arm.setTargetPosition(encTarget);
+                Robot.robotMap.arm.setPower(power);
+            } else if(encTarget > Robot.robotMap.arm.getCurrentPosition()) {
+                Robot.robotMap.arm.setTargetPosition(encTarget);
+                Robot.robotMap.arm.setPower(power*0.15);
+            }
+
         }
 
         setCalcPID(PID);

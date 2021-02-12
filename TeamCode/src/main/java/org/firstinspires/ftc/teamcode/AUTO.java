@@ -98,7 +98,7 @@ public class AUTO extends OpMode
         rightDriveF.setPower(speed);
         rightDriveB.setPower(speed);
         try {
-            sleep(2000);
+            sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

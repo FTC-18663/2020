@@ -59,6 +59,8 @@ public class Robot extends OpMode
     public static HardwareMap robotMap = new HardwareMap();
     private Drivetrain m_drive;
     private Arm m_arm;
+    private DistanceSensor m_distanceSensor;
+    private Sweep m_sweep;
 
 
     /*
@@ -71,6 +73,8 @@ public class Robot extends OpMode
         robotMap.init(hardwareMap);
         m_drive = new Drivetrain();
         m_arm = new Arm();
+        m_distanceSensor = new DistanceSensor();
+        m_sweep = new Sweep();
 
         //drive.init();
         m_drive.stop();
@@ -94,6 +98,7 @@ public class Robot extends OpMode
      */
     @Override
     public void init_loop() {
+        telemetry.addData("Position", Robot.robotMap.arm0.getCurrentPosition());
     }
 
     /*
@@ -110,16 +115,29 @@ public class Robot extends OpMode
     @Override
     public void loop() {
 
-        m_drive.setDrive(gamepad1.left_stick_y, gamepad1.right_stick_x, 1.00);
-        m_arm.setTarget(gamepad1.dpad_up, 100);
-        m_arm.setTarget(gamepad1.dpad_left, 60);
-        m_arm.setTarget(gamepad1.dpad_down, 0);
+        if(gamepad2.right_bumper) {
+            m_drive.setDrive(gamepad2.left_stick_y, gamepad2.right_stick_x, 0.40);
+        } else {
+            m_drive.setDrive(gamepad2.left_stick_y, gamepad2.right_stick_x, 1.00);
+        }
+//        m_arm.setTarget(gamepad1.dpad_up, -202, 1.00);
+//        m_arm.setTarget(gamepad1.dpad_left, -58, 0.50);
+//        m_arm.setTarget(gamepad1.dpad_down, 0, 0.20);
 
-        telemetry.addData("Position", Robot.robotMap.arm.getCurrentPosition());
+
+
+        m_arm.setArm(gamepad1.dpad_up, gamepad1.dpad_down, gamepad1.left_bumper, gamepad1.right_bumper,0.5);
+
+
+
+        m_arm.resetOffset(gamepad1.dpad_left);
+
+        m_sweep.sweeper(gamepad1.a);
+
+        telemetry.addData("Position", Robot.robotMap.arm0.getCurrentPosition());
         telemetry.addData("PID", m_arm.getCalcPID());
         telemetry.addData("Error", m_arm.getArmError());
-
-
+        telemetry.addData("Distance", m_distanceSensor.getDistance() + "M");
         // Show the elapsed game time and wheel power.
         //telemetry.addData("Status", "Run Time: " + runtime.toString());
 //        telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);

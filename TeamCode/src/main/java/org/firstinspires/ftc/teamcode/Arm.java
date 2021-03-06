@@ -66,9 +66,10 @@ public class Arm {
         double upSpeed = speed * 0.25;
         double downSpeed = speed * 0.25;
 
+        boolean beforeTarget = Robot.robotMap.arm0.getCurrentPosition() + Robot.robotMap.arm1.getCurrentPosition() <= launchStopShort * 2;
 
         if(up) {
-            if(Robot.robotMap.arm0.getCurrentPosition() <= launchPosition) {
+            if (beforeTarget) {
                 stop();
             } else {
 
@@ -80,7 +81,7 @@ public class Arm {
             Robot.robotMap.arm0.setPower(downSpeed);
             Robot.robotMap.arm1.setPower(-downSpeed);
         } else if (lb) {
-            if(Robot.robotMap.arm0.getCurrentPosition() <= launchStopLong) {
+            if (beforeTarget) {
                 stop();
             } else {
                 // set launch power
@@ -88,7 +89,7 @@ public class Arm {
                 Robot.robotMap.arm1.setPower(launchSpeed);
             }
         } else if(rb) {
-            if(Robot.robotMap.arm0.getCurrentPosition() <= launchStopShort) {
+            if (beforeTarget) {
                 stop();
             } else {
                 // set launch power

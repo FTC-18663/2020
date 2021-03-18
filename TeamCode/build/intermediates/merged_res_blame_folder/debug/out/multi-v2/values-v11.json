@@ -4,7 +4,11 @@
             "outputFile": "C:\\Users\\Lucas\\Documents\\GitHub\\2020\\TeamCode\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
             "map": [
                 {
+<<<<<<< Updated upstream
                     "source": "C:\\Users\\Lucas\\.gradle\\caches\\transforms-2\\files-2.1\\5b69d74321d6a0939cb04c3f13636be3\\jetified-RobotCore-6.0.1\\res\\values-v11\\values-v11.xml",
+=======
+                    "source": "C:\\Users\\Lucas\\.gradle\\caches\\transforms-2\\files-2.1\\d1de3828b236941c0423aab97d1d9bc1\\jetified-RobotCore-6.0.1\\res\\values-v11\\values-v11.xml",
+>>>>>>> Stashed changes
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

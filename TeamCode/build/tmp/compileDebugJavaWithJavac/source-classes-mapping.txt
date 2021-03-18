@@ -10,6 +10,7 @@ org/firstinspires/ftc/teamcode/Robot.java
  org.firstinspires.ftc.teamcode.Robot
 org/firstinspires/ftc/teamcode/Drivetrain.java
  org.firstinspires.ftc.teamcode.Drivetrain
+<<<<<<< Updated upstream
 org/firstinspires/ftc/teamcode/Shooter.java
  org.firstinspires.ftc.teamcode.Shooter
 org/firstinspires/ftc/teamcode/RobotTesting.java
@@ -18,6 +19,14 @@ org/firstinspires/ftc/teamcode/Arm.java
  org.firstinspires.ftc.teamcode.Arm
 org/firstinspires/ftc/teamcode/RobotAuto.java
  org.firstinspires.ftc.teamcode.RobotAuto
+=======
+org/firstinspires/ftc/teamcode/Wrist.java
+ org.firstinspires.ftc.teamcode.Wrist
+org/firstinspires/ftc/teamcode/Arm.java
+ org.firstinspires.ftc.teamcode.Arm
+org/firstinspires/ftc/teamcode/Carousel.java
+ org.firstinspires.ftc.teamcode.Carousel
+>>>>>>> Stashed changes
 org/firstinspires/ftc/teamcode/BuildConfig.java
  org.firstinspires.ftc.teamcode.BuildConfig
 org/firstinspires/ftc/teamcode/PID.java

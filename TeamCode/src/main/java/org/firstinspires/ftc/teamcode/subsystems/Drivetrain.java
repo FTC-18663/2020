@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.subsystems;
 
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.Robot;
 
@@ -17,6 +18,11 @@ public class Drivetrain {
 
     public Drivetrain() {
 
+        Robot.robot.leftDriveF.setDirection(DcMotorSimple.Direction.FORWARD);
+        Robot.robot.rightDriveF.setDirection(DcMotorSimple.Direction.FORWARD);
+        Robot.robot.leftDriveR.setDirection(DcMotorSimple.Direction.REVERSE);
+        Robot.robot.rightDriveR.setDirection(DcMotorSimple.Direction.REVERSE);
+
     }
 
     public void init() {
@@ -29,9 +35,9 @@ public class Drivetrain {
         double rightPower = (fwd + rot) * maxSpeed;
 
         Robot.robot.leftDriveF.setPower(leftPower);
-        Robot.robot.rightDriveF.setPower(-rightPower);
+        Robot.robot.rightDriveF.setPower(rightPower);
         Robot.robot.leftDriveR.setPower(leftPower);
-        Robot.robot.rightDriveR.setPower(-rightPower);
+        Robot.robot.rightDriveR.setPower(rightPower);
 
        // telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
     }

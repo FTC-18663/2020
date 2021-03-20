@@ -1,0 +1,4 @@
+#Sat Mar 06 10:19:35 CST 2021
+base.0=/Users/aaronphal/Documents/FTC/2020/TeamCode/build/intermediates/dex/release/mergeDexRelease/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

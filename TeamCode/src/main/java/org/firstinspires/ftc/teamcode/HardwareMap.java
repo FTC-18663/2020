@@ -71,8 +71,11 @@ public class HardwareMap
     public DcMotor arm1 = null;
     public TouchSensor reset = null;
     public DistanceSensor distanceSensor = null;
-    public Servo sweep0 = null;
-    public Servo sweep1 = null;
+    public DcMotor shooter0 = null;
+    public DcMotor shooter1 = null;
+    public DcMotor intake = null;
+    public Servo stage1 = null;
+    public Servo stage2 = null;
     //public DcMotor wrist = null;
     //public DcMotor carousel = null;
 
@@ -99,8 +102,14 @@ public class HardwareMap
         arm1 = hwMap.get(DcMotor.class,"arm1");
         reset = hwMap.get(TouchSensor.class,"reset");
         distanceSensor = hwMap.get(DistanceSensor.class, "sense");
-        sweep0 = hwMap.get(Servo.class, "sweep0");
-        sweep1 = hwMap.get(Servo.class, "sweep1");
+
+        shooter0 = hwMap.get(DcMotor.class, "shooter0");
+        shooter1 = hwMap.get(DcMotor.class, "shooter1");
+        intake = hwMap.get(DcMotor.class, "intake");
+
+        stage1 = hwMap.get(Servo.class, "stage1");
+        stage2 = hwMap.get(Servo.class, "stage2");
+
         //wrist  = hwMap.get(DcMotor.class, "wrist");
 
 

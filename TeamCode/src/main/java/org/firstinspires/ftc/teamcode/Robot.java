@@ -10,23 +10,18 @@ public class Robot extends OpMode {
     public static HardwareMap robot = new HardwareMap();
     public static ElapsedTime runtime = new ElapsedTime();
 
-    public Robot() {
-
+    public Robot(com.qualcomm.robotcore.hardware.HardwareMap hardwareMap) {
+        robot.init(hardwareMap);
     }
 
     @Override
     public void init() {
-        robot.init(hardwareMap);
+
     }
 
     @Override
     public void loop() {
 
     }
-
-    public static boolean isOpModeActive() {
-        return isOpModeActive();
-    }
-
 
 }

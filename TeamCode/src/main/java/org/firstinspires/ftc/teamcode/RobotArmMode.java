@@ -56,7 +56,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 public class RobotArmMode extends OpMode
 {
 
-    Robot robot = new Robot();
+    Robot robot = new Robot(hardwareMap);
 
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
@@ -73,7 +73,8 @@ public class RobotArmMode extends OpMode
      */
     @Override
     public void init() {
-        robot.init();
+        //robot.init();
+
         telemetry.addData("Status", "Initialized");
 
 
@@ -126,9 +127,6 @@ public class RobotArmMode extends OpMode
         } else {
             m_drive.setDrive(gamepad2.left_stick_y, gamepad2.right_stick_x, 1.00);
         }
-//        m_arm.setTarget(gamepad1.dpad_up, -202, 1.00);
-//        m_arm.setTarget(gamepad1.dpad_left, -58, 0.50);
-//        m_arm.setTarget(gamepad1.dpad_down, 0, 0.20);
 
 
 

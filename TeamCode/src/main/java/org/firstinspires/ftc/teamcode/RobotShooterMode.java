@@ -58,7 +58,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Shooter;
 public class RobotShooterMode extends OpMode
 {
 
-    Robot robot = new Robot();
+    Robot robot = new Robot(hardwareMap);
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
 

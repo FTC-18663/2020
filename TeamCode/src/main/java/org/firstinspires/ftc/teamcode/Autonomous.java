@@ -69,7 +69,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Shooter;
 public class Autonomous extends LinearOpMode {
 
     /* Declare OpMode members. */
-    Robot robot = new Robot();
+    Robot robot = new Robot(hardwareMap);
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override

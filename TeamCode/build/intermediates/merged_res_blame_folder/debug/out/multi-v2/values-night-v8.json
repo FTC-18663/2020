@@ -4,11 +4,7 @@
             "outputFile": "C:\\Users\\Lucas\\Documents\\GitHub\\2020\\TeamCode\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
-<<<<<<< Updated upstream
                     "source": "C:\\Users\\Lucas\\.gradle\\caches\\transforms-2\\files-2.1\\4f9c7f78c15bb692cf0895b881aafbad\\appcompat-1.2.0\\res\\values-night-v8\\values-night-v8.xml",
-=======
-                    "source": "C:\\Users\\Lucas\\.gradle\\caches\\transforms-2\\files-2.1\\a527ad4f532df6b258c428a911debd89\\appcompat-1.2.0\\res\\values-night-v8\\values-night-v8.xml",
->>>>>>> Stashed changes
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

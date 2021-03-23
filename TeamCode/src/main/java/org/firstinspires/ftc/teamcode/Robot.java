@@ -132,7 +132,7 @@ public class Robot extends OpMode
 
         m_arm.resetOffset(gamepad1.dpad_left);
 
-        m_sweep.sweeper(gamepad1.a);
+        m_sweep.sweeper(gamepad1.a,gamepad1.b);
 
         telemetry.addData("Position", Robot.robotMap.arm0.getCurrentPosition());
         telemetry.addData("PID", m_arm.getCalcPID());

@@ -64,6 +64,8 @@ public class EncoderAutonomous extends LinearOpMode
 
         leftMotorF.setPower(0.25);
         rightMotorF.setPower(0.25);
+        leftMotorR.setPower(0.25);
+        rightMotorR.setPower(0.25);
 
         // wait while opmode is active and left motor is busy running to position.
 

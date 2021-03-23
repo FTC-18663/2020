@@ -14,8 +14,8 @@ public class EncoderAutonomous extends LinearOpMode
     @Override
     public void runOpMode() throws InterruptedException
     {
-        leftMotor = hardwareMap.dcMotor.get("left_motor");
-        rightMotor = hardwareMap.dcMotor.get("right_motor");
+        leftMotor = hardwareMap.dcMotor.get("left_drive0");
+        rightMotor = hardwareMap.dcMotor.get("right_drive1");
 
         // You will need to set this based on your robot's
         // gearing to get forward control input to result in

@@ -7,7 +7,6 @@ public class Sweep {
     public Sweep() {
         Robot.robotMap.stage0.setDirection(Servo.Direction.FORWARD);
         Robot.robotMap.stage1.setDirection(Servo.Direction.REVERSE);
-        ///Robot.robotMap.stage0.scaleRange(0,180);
     }
 
 

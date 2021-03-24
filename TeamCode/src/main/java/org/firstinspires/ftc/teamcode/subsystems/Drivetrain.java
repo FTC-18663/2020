@@ -1,11 +1,14 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.Robot;
+import org.firstinspires.ftc.teamcode.helpers.Constants;
 
-public class Drivetrain {
+
+public class Drivetrain extends OpMode {
 
     private static final double COUNTS_PER_MOTOR_REV    = 6000 ;    // eg: TETRIX Motor Encoder
     private static final double DRIVE_GEAR_REDUCTION    = 40.0 ;     // This is < 1.0 if geared UP
@@ -15,16 +18,27 @@ public class Drivetrain {
     private static final double DRIVE_SPEED             = 0.6;
     private static final double TURN_SPEED              = 0.5;
 
+    private DcMotor leftDriveF  = hardwareMap.get(DcMotor.class, Constants.Drivetrain.LEFT_DRIVE_FRONT);
+    private DcMotor rightDriveF = hardwareMap.get(DcMotor.class, Constants.Drivetrain.RIGHT_DRIVE_FRONT);
+    private DcMotor leftDriveR = hardwareMap.get(DcMotor.class, Constants.Drivetrain.LEFT_DRIVE_REAR);
+    private DcMotor rightDriveR = hardwareMap.get(DcMotor.class, Constants.Drivetrain.RIGHT_DRIVE_REAR);
+
     public Drivetrain() {
 
-        Robot.robot.leftDriveF.setDirection(DcMotorSimple.Direction.FORWARD);
-        Robot.robot.rightDriveF.setDirection(DcMotorSimple.Direction.FORWARD);
-        Robot.robot.leftDriveR.setDirection(DcMotorSimple.Direction.REVERSE);
-        Robot.robot.rightDriveR.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftDriveF.setDirection(DcMotorSimple.Direction.FORWARD);
+        rightDriveF.setDirection(DcMotorSimple.Direction.FORWARD);
+        leftDriveR.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightDriveR.setDirection(DcMotorSimple.Direction.REVERSE);
 
     }
 
+    @Override
     public void init() {
+
+    }
+
+    @Override
+    public void loop() {
 
     }
 
@@ -32,24 +46,24 @@ public class Drivetrain {
         double leftPower = (fwd - rot) * maxSpeed;
         double rightPower = (fwd + rot) * maxSpeed;
 
-        Robot.robot.leftDriveF.setPower(leftPower);
-        Robot.robot.rightDriveF.setPower(rightPower);
-        Robot.robot.leftDriveR.setPower(leftPower);
-        Robot.robot.rightDriveR.setPower(rightPower);
+        leftDriveF.setPower(leftPower);
+        rightDriveF.setPower(rightPower);
+        leftDriveR.setPower(leftPower);
+        rightDriveR.setPower(rightPower);
 
        // telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
     }
 
     public void setEncoderMode() {
-        Robot.robot.leftDriveF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        Robot.robot.rightDriveF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        Robot.robot.leftDriveR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        Robot.robot.rightDriveR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftDriveF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightDriveF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftDriveR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightDriveR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        Robot.robot.leftDriveF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        Robot.robot.rightDriveF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        Robot.robot.leftDriveR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        Robot.robot.rightDriveR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftDriveF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightDriveF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftDriveR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightDriveR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void encoderDrive(double speed, double leftInches, double rightInches, double timeoutS) {
@@ -59,24 +73,24 @@ public class Drivetrain {
         // Ensure that the opmode is still active
 
             // Determine new target position, and pass to motor controller
-            newLeftTarget = Robot.robot.leftDriveF.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
-            newRightTarget = Robot.robot.rightDriveF.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
+            newLeftTarget = leftDriveF.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
+            newRightTarget = rightDriveF.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
 
-            Robot.robot.leftDriveF.setTargetPosition(newLeftTarget);
-            Robot.robot.rightDriveF.setTargetPosition(newRightTarget);
-            Robot.robot.leftDriveR.setTargetPosition(newLeftTarget);
-            Robot.robot.rightDriveR.setTargetPosition(newRightTarget);
+            leftDriveF.setTargetPosition(newLeftTarget);
+            rightDriveF.setTargetPosition(newRightTarget);
+            leftDriveR.setTargetPosition(newLeftTarget);
+            rightDriveR.setTargetPosition(newRightTarget);
 
             // Turn On RUN_TO_POSITION
-            Robot.robot.leftDriveF.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            Robot.robot.rightDriveF.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            leftDriveF.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightDriveF.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             // reset the timeout time and start motion.
             Robot.runtime.reset();
-            Robot.robot.leftDriveF.setPower(Math.abs(speed));
-            Robot.robot.rightDriveF.setPower(Math.abs(speed));
-            Robot.robot.leftDriveR.setPower(Math.abs(speed));
-            Robot.robot.rightDriveR.setPower(Math.abs(speed));
+            leftDriveF.setPower(Math.abs(speed));
+            rightDriveF.setPower(Math.abs(speed));
+            leftDriveR.setPower(Math.abs(speed));
+            rightDriveR.setPower(Math.abs(speed));
 
             // keep looping while we are still active, and there is time left, and both motors are running.
             // Note: We use (isBusy() && isBusy()) in the loop test, which means that when EITHER motor hits
@@ -84,7 +98,7 @@ public class Drivetrain {
             // always end the motion as soon as possible.
             // However, if you require that BOTH motors have finished their moves before the robot continues
             // onto the next step, use (isBusy() || isBusy()) in the loop test.
-            while ((Robot.runtime.seconds() < timeoutS) && (Robot.robot.leftDriveF.isBusy() && Robot.robot.rightDriveF.isBusy())) {
+            while ((Robot.runtime.seconds() < timeoutS) && (leftDriveF.isBusy() && rightDriveF.isBusy())) {
 
                 // Display it for the driver.
 //                Robot.telemetry.addData("Path1",  "Running to %7d :%7d", newLeftTarget,  newRightTarget);
@@ -96,19 +110,19 @@ public class Drivetrain {
             stop();
 
             // Turn off RUN_TO_POSITION
-            Robot.robot.leftDriveF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            Robot.robot.rightDriveF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            Robot.robot.leftDriveR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            Robot.robot.rightDriveR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            leftDriveF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            rightDriveF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            leftDriveR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            rightDriveR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
             //  sleep(250);   // optional pause after each move
 
     }
 
     public void stop() {
-        Robot.robot.leftDriveF.setPower(0.00);
-        Robot.robot.rightDriveF.setPower(0.00);
-        Robot.robot.leftDriveR.setPower(0.00);
-        Robot.robot.rightDriveR.setPower(0.00);
+        leftDriveF.setPower(0.00);
+        rightDriveF.setPower(0.00);
+        leftDriveR.setPower(0.00);
+        rightDriveR.setPower(0.00);
     }
 }

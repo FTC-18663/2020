@@ -1,37 +1,27 @@
-org/firstinspires/ftc/teamcode/subsystems/Webcam.java
- org.firstinspires.ftc.teamcode.subsystems.Webcam
- org.firstinspires.ftc.teamcode.subsystems.Webcam$1
- org.firstinspires.ftc.teamcode.subsystems.Webcam$2
- org.firstinspires.ftc.teamcode.subsystems.Webcam$2$1
- org.firstinspires.ftc.teamcode.subsystems.Webcam$2$2
-org/firstinspires/ftc/teamcode/RobotShooterMode.java
- org.firstinspires.ftc.teamcode.RobotShooterMode
-org/firstinspires/ftc/teamcode/RobotTesting.java
- org.firstinspires.ftc.teamcode.RobotTesting
-org/firstinspires/ftc/teamcode/Autonomous.java
- org.firstinspires.ftc.teamcode.Autonomous
-org/firstinspires/ftc/teamcode/subsystems/Shooter.java
- org.firstinspires.ftc.teamcode.subsystems.Shooter
-org/firstinspires/ftc/teamcode/subsystems/Intake.java
- org.firstinspires.ftc.teamcode.subsystems.Intake
-org/firstinspires/ftc/teamcode/HardwareMap.java
- org.firstinspires.ftc.teamcode.HardwareMap
 org/firstinspires/ftc/teamcode/helpers/PID.java
  org.firstinspires.ftc.teamcode.helpers.PID
 org/firstinspires/ftc/teamcode/Robot.java
  org.firstinspires.ftc.teamcode.Robot
 org/firstinspires/ftc/teamcode/helpers/Constants.java
  org.firstinspires.ftc.teamcode.helpers.Constants
+ org.firstinspires.ftc.teamcode.helpers.Constants$Arm
  org.firstinspires.ftc.teamcode.helpers.Constants$Drive
-org/firstinspires/ftc/teamcode/subsystems/DistanceSensor.java
- org.firstinspires.ftc.teamcode.subsystems.DistanceSensor
+ org.firstinspires.ftc.teamcode.helpers.Constants$Drivetrain
+ org.firstinspires.ftc.teamcode.helpers.Constants$Sensors
+ org.firstinspires.ftc.teamcode.helpers.Constants$Stage
+org/firstinspires/ftc/teamcode/Autonomous.java
+ org.firstinspires.ftc.teamcode.Autonomous
+org/firstinspires/ftc/teamcode/subsystems/Distance.java
+ org.firstinspires.ftc.teamcode.subsystems.Distance
 org/firstinspires/ftc/teamcode/subsystems/Arm.java
  org.firstinspires.ftc.teamcode.subsystems.Arm
-org/firstinspires/ftc/teamcode/RobotArmMode.java
- org.firstinspires.ftc.teamcode.RobotArmMode
 org/firstinspires/ftc/teamcode/BuildConfig.java
  org.firstinspires.ftc.teamcode.BuildConfig
+org/firstinspires/ftc/teamcode/RobotIO.java
+ org.firstinspires.ftc.teamcode.RobotIO
+org/firstinspires/ftc/teamcode/subsystems/Stage.java
+ org.firstinspires.ftc.teamcode.subsystems.Stage
 org/firstinspires/ftc/teamcode/subsystems/Drivetrain.java
  org.firstinspires.ftc.teamcode.subsystems.Drivetrain
-org/firstinspires/ftc/teamcode/subsystems/ServoStage.java
- org.firstinspires.ftc.teamcode.subsystems.ServoStage
+org/firstinspires/ftc/teamcode/HardwareMap.java
+ org.firstinspires.ftc.teamcode.HardwareMap

@@ -1,20 +1,30 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
 
+import android.text.method.Touch;
+
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.Robot;
+import org.firstinspires.ftc.robotcore.external.Const;
+import org.firstinspires.ftc.teamcode.helpers.Constants;
 import org.firstinspires.ftc.teamcode.helpers.PID;
-import org.firstinspires.ftc.teamcode.RobotArmMode;
 
-public class Arm {
+import java.nio.charset.CharsetDecoder;
+
+public class Arm extends OpMode {
 
     private int launchPosition = -130;
     private int launchStopShort = -343;
     private int launchStopLong = -343;
+
+    private DcMotor arm0 = hardwareMap.get(DcMotor.class, Constants.Arm.ARM0);
+    private DcMotor arm1= hardwareMap.get(DcMotor.class,Constants.Arm.ARM1);
+    private TouchSensor reset = hardwareMap.get(TouchSensor.class,Constants.Sensors.ARM_RESET);
+
 
     private int beforeTargetValue;
 
@@ -32,15 +42,31 @@ public class Arm {
 //        Robot.robotMap.arm0.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 //        Robot.robotMap.arm1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        Robot.robot.arm0.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        Robot.robot.arm1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        arm0.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        arm1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        Robot.robot.arm0.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        Robot.robot.arm1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        arm0.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        arm1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        Robot.robot.arm0.setDirection(DcMotorSimple.Direction.REVERSE);
-        Robot.robot.arm1.setDirection(DcMotorSimple.Direction.REVERSE);
+        arm0.setDirection(DcMotorSimple.Direction.REVERSE);
+        arm1.setDirection(DcMotorSimple.Direction.REVERSE);
 
+    }
+
+    @Override
+    public void init() {
+
+        telemetry.addData("Position", arm0.getCurrentPosition());
+
+    }
+
+    @Override
+    public void loop() {
+
+        telemetry.addData("Position0", arm0.getCurrentPosition());
+        telemetry.addData("Position1", arm1.getCurrentPosition());
+        telemetry.addData("PID", getCalcPID());
+        telemetry.addData("Error", getArmError());
     }
 
     public double getCalcPID() {
@@ -74,44 +100,44 @@ public class Arm {
 
         //boolean beforeTarget = beforeTargetValue <= launchStopShort;
 
-        boolean beforeTarget = -Robot.robot.arm1.getCurrentPosition() <= launchStopShort;
+        boolean beforeTarget = -arm1.getCurrentPosition() <= launchStopShort;
 
 
         if(up) {
-            if (-Robot.robot.arm1.getCurrentPosition() <= launchPosition) {
+            if (-arm1.getCurrentPosition() <= launchPosition) {
                 stop();
             } else {
 
                 //arm going up to launch position
-                Robot.robot.arm0.setPower(-upSpeed);
-                Robot.robot.arm1.setPower(upSpeed);
+                arm0.setPower(-upSpeed);
+                arm1.setPower(upSpeed);
             }
         } else if(down) {
-            Robot.robot.arm0.setPower(downSpeed);
-            Robot.robot.arm1.setPower(-downSpeed);
+            arm0.setPower(downSpeed);
+            arm1.setPower(-downSpeed);
         } else if (lb) {
             if (beforeTarget) {
                 stop();
             } else {
                 // set launch power
-                Robot.robot.arm0.setPower(-launchSpeed);
-                Robot.robot.arm1.setPower(launchSpeed);
+                arm0.setPower(-launchSpeed);
+                arm1.setPower(launchSpeed);
             }
         } else if(rb) {
             if (beforeTarget) {
                 stop();
             } else {
                 // set launch power
-                Robot.robot.arm0.setPower(-launchSpeed);
-                Robot.robot.arm1.setPower(launchSpeed);
+                arm0.setPower(-launchSpeed);
+                arm1.setPower(launchSpeed);
             }
         } else{
-            if(Robot.robot.reset.isPressed()) {
-                Robot.robot.arm0.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-                Robot.robot.arm1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            if(reset.isPressed()) {
+                arm0.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                arm1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-                Robot.robot.arm0.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-                Robot.robot.arm1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                arm0.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                arm1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             } else {
                 stop();
             }
@@ -127,19 +153,19 @@ public class Arm {
         double error = 0.00;
 
         if(button) {
-            PID = ourPID.calculatePID(encTarget, Robot.robot.arm0.getCurrentPosition(), runtime.milliseconds());
+            PID = ourPID.calculatePID(encTarget, arm0.getCurrentPosition(), runtime.milliseconds());
             error = ourPID.getLastError();
-            if(encTarget < Robot.robot.arm0.getCurrentPosition()) {
-                Robot.robot.arm0.setTargetPosition(encTarget);
-                Robot.robot.arm0.setPower(power);
+            if(encTarget < arm0.getCurrentPosition()) {
+                arm0.setTargetPosition(encTarget);
+                arm0.setPower(power);
 
 
 
-            } else if(encTarget > Robot.robot.arm0.getCurrentPosition()) {
-                Robot.robot.arm0.setTargetPosition(encTarget);
-                Robot.robot.arm0.setPower(power*0.15);
+            } else if(encTarget > arm0.getCurrentPosition()) {
+                arm0.setTargetPosition(encTarget);
+                arm0.setPower(power*0.15);
 
-                Robot.robot.arm1.setPower(Robot.robot.arm0.getPower());
+                arm1.setPower(arm0.getPower());
             }
 
         }
@@ -154,18 +180,18 @@ public class Arm {
 
     public void resetOffset(boolean reset) {
         if(reset) {
-            Robot.robot.arm0.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            Robot.robot.arm1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            arm0.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            arm1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-            Robot.robot.arm0.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            Robot.robot.arm1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            arm0.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            arm1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }else {
 
         }
     }
 
     public void stop() {
-        Robot.robot.arm0.setPower(0.00);
-        Robot.robot.arm1.setPower(0.00);
+        arm0.setPower(0.00);
+        arm1.setPower(0.00);
     }
 }

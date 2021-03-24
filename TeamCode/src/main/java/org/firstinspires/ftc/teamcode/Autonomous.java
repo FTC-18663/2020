@@ -30,12 +30,10 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.helpers.Constants;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
-import org.firstinspires.ftc.teamcode.subsystems.Shooter;
 
 /**
  * This file illustrates the concept of driving a path based on encoder counts.
@@ -69,7 +67,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Shooter;
 public class Autonomous extends LinearOpMode {
 
     /* Declare OpMode members. */
-    Robot robot = new Robot(hardwareMap);
+
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override
@@ -80,7 +78,6 @@ public class Autonomous extends LinearOpMode {
 
         HardwareMap robotMap = new HardwareMap();
         Drivetrain m_drive = new Drivetrain();
-        Shooter m_shooter = new Shooter();
         //DistanceSensor m_distanceSensor = new DistanceSensor();
         //Sweep m_sweep = ;
 
@@ -98,9 +95,9 @@ public class Autonomous extends LinearOpMode {
         m_drive.setEncoderMode();
 
         // Send telemetry message to indicate successful Encoder reset
-        telemetry.addData("Path0",  "Starting at %7d :%7d",
-                          Robot.robot.leftDriveF.getCurrentPosition(),
-                          Robot.robot.rightDriveF.getCurrentPosition());
+//        telemetry.addData("Path0",  "Starting at %7d :%7d",
+//                          leftDriveF.getCurrentPosition(),
+//                          rightDriveF.getCurrentPosition());
         telemetry.update();
 
         // Wait for the game to start (driver presses PLAY)

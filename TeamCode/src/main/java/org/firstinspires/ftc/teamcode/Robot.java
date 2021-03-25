@@ -36,6 +36,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Distance;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.Stage;
 
 /**
  * This file contains an example of an iterative (Non-Linear) "OpMode".
@@ -62,9 +63,11 @@ public class Robot extends OpMode
     public static ElapsedTime runtime = new ElapsedTime();
 
     //public static HardwareMap robotMap = new HardwareMap();
-    public static Drivetrain m_drive;
-    public static Arm m_arm;
-    public static Distance m_distanceSensor;
+    public static Drivetrain m_drive = null;
+    public static Arm m_arm = null;
+    public static Distance m_distanceSensor = null;
+    public static Stage m_stage = null;
+    public RobotIO m_io = null;
 
 
 
@@ -73,7 +76,8 @@ public class Robot extends OpMode
      */
     @Override
     public void init() {
-        robot.init(hardwareMap);
+
+        //robot.init(hardwareMap);
 
         telemetry.addData("Status", "Initialized");
 
@@ -81,10 +85,15 @@ public class Robot extends OpMode
         m_drive = new Drivetrain();
         m_arm = new Arm();
         m_distanceSensor = new Distance();
+        m_stage = new Stage();
 
+        m_io = new RobotIO();
+        m_io.init();
 
         //drive.init();
         m_drive.stop();
+
+
 
 
         // Initialize the hardware variables. Note that the strings used here as parameters
@@ -121,6 +130,8 @@ public class Robot extends OpMode
      */
     @Override
     public void loop() {
+
+        m_io.loop();
 
 //        if(gamepad2.right_bumper) {
 ////            m_drive.setDrive(gamepad2.left_stick_y, gamepad2.right_stick_x, 0.40);

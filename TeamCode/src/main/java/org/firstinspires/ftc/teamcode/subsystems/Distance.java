@@ -10,10 +10,10 @@ import org.firstinspires.ftc.teamcode.helpers.Constants;
 
 public class Distance extends OpMode {
 
-    private DistanceSensor distanceSensor = hardwareMap.get(DistanceSensor.class, Constants.Sensors.DISTANCE_SENSOR);
+    private DistanceSensor distanceSensor = null;
 
-    public Distance() {
-
+    public Distance(com.qualcomm.robotcore.hardware.HardwareMap hM) {
+        hM.get(DistanceSensor.class, Constants.Sensors.DISTANCE_SENSOR);
     }
 
     @Override

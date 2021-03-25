@@ -66,7 +66,7 @@ public class HardwareMap
     public DcMotor leftDriveF = null;//  = opMode.hardwareMap.get(DcMotor.class, "left_drive0");
     public DcMotor rightDriveF = null;// = opMode.hardwareMap.get(DcMotor.class, "right_drive1");
     public DcMotor leftDriveR = null;// = opMode.hardwareMap.get(DcMotor.class, "left_drive2");
-    public DcMotor rightDriveR = null;// = opMode.hardwareMap.get(DcMotor.class, "right_dri
+    public DcMotor rightDriveR = null;// = opMode.hardwareMap.get(DcMotor.class, "right_drive2");
     public DcMotor arm0 = null;
     public DcMotor arm1 = null;
     public TouchSensor reset = null;

@@ -8,10 +8,13 @@ import org.firstinspires.ftc.teamcode.helpers.Constants;
 
 public class Stage extends OpMode {
 
-    private Servo stage0 = hardwareMap.get(Servo.class, Constants.Stage.STAGE0);
-    private Servo stage1 = hardwareMap.get(Servo.class, Constants.Stage.STAGE1);
+    private Servo stage0 = null;
+    private Servo stage1 = null;
 
-    public Stage() {
+    public Stage(com.qualcomm.robotcore.hardware.HardwareMap hM) {
+
+        hM.get(Servo.class, Constants.Stage.STAGE0);
+        hM.get(Servo.class, Constants.Stage.STAGE1);
 
         stage0.setDirection(Servo.Direction.FORWARD);
         stage1.setDirection(Servo.Direction.REVERSE);

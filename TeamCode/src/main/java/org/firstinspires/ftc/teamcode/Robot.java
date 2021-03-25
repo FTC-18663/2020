@@ -57,7 +57,9 @@ import org.firstinspires.ftc.teamcode.subsystems.Stage;
 public class Robot extends OpMode
 {
 
-    HardwareMap robot = new HardwareMap();
+    //HardwareMap robot = new HardwareMap();
+
+
 
     // Declare OpMode members.
     public static ElapsedTime runtime = new ElapsedTime();
@@ -77,15 +79,15 @@ public class Robot extends OpMode
     @Override
     public void init() {
 
-        //robot.init(hardwareMap);
+
 
         telemetry.addData("Status", "Initialized");
 
 
-        m_drive = new Drivetrain();
-        m_arm = new Arm();
-        m_distanceSensor = new Distance();
-        m_stage = new Stage();
+        m_drive = new Drivetrain(hardwareMap);
+        m_arm = new Arm(hardwareMap);
+        m_distanceSensor = new Distance(hardwareMap);
+        m_stage = new Stage(hardwareMap);
 
         m_io = new RobotIO();
         m_io.init();

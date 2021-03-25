@@ -21,9 +21,9 @@ public class Arm extends OpMode {
     private int launchStopShort = -343;
     private int launchStopLong = -343;
 
-    private DcMotor arm0 = hardwareMap.get(DcMotor.class, Constants.Arm.ARM0);
-    private DcMotor arm1= hardwareMap.get(DcMotor.class,Constants.Arm.ARM1);
-    private TouchSensor reset = hardwareMap.get(TouchSensor.class,Constants.Sensors.ARM_RESET);
+    private DcMotor arm0 = null;
+    private DcMotor arm1 = null;
+    private TouchSensor reset = null;
 
 
     private int beforeTargetValue;
@@ -34,7 +34,12 @@ public class Arm extends OpMode {
     public double calcPID = 0;
     public double armError = 0;
 
-    public Arm() {
+    public Arm(com.qualcomm.robotcore.hardware.HardwareMap hM) {
+
+        hM.get(DcMotor.class, Constants.Arm.ARM0);
+        hM.get(DcMotor.class,Constants.Arm.ARM1);
+        hM.get(TouchSensor.class,Constants.Sensors.ARM_RESET);
+
         ourPID = new PID(0.4, 0.000, 0.00);
         runtime.reset();
         //Robot.robotMap.arm0.setMode(DcMotor.RunMode.RUN_TO_POSITION);

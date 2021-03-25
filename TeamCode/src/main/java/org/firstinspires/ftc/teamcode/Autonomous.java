@@ -76,8 +76,8 @@ public class Autonomous extends LinearOpMode {
         // Declare OpMode members.
         ElapsedTime runtime = new ElapsedTime();
 
-        HardwareMap robotMap = new HardwareMap();
-        Drivetrain m_drive = new Drivetrain();
+
+        Drivetrain m_drive = new Drivetrain(hardwareMap);
         //DistanceSensor m_distanceSensor = new DistanceSensor();
         //Sweep m_sweep = ;
 

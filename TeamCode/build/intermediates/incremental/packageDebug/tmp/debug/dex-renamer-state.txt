@@ -1,10 +1,10 @@
-#Tue Mar 23 20:05:39 CDT 2021
+#Thu Mar 25 18:28:21 CDT 2021
 path.2=classes_0.dex
 path.1=classes.dex
 path.0=classes.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
-base.2=/Users/aaronphal/Documents/FTC/2020/TeamCode/build/intermediates/dex/debug/mergeLibDexDebug/classes_0.dex
-base.1=/Users/aaronphal/Documents/FTC/2020/TeamCode/build/intermediates/dex/debug/mergeProjectDexDebug/classes.dex
-base.0=/Users/aaronphal/Documents/FTC/2020/TeamCode/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+base.2=C\:\\Users\\Lucas\\Documents\\GitHub\\2020\\TeamCode\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_0.dex
+base.1=C\:\\Users\\Lucas\\Documents\\GitHub\\2020\\TeamCode\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\classes.dex
+base.0=C\:\\Users\\Lucas\\Documents\\GitHub\\2020\\TeamCode\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex

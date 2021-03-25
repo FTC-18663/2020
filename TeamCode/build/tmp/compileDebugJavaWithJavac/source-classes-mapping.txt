@@ -17,10 +17,10 @@ org/firstinspires/ftc/teamcode/subsystems/Arm.java
  org.firstinspires.ftc.teamcode.subsystems.Arm
 org/firstinspires/ftc/teamcode/BuildConfig.java
  org.firstinspires.ftc.teamcode.BuildConfig
-org/firstinspires/ftc/teamcode/RobotIO.java
- org.firstinspires.ftc.teamcode.RobotIO
 org/firstinspires/ftc/teamcode/subsystems/Stage.java
  org.firstinspires.ftc.teamcode.subsystems.Stage
+org/firstinspires/ftc/teamcode/RobotIO.java
+ org.firstinspires.ftc.teamcode.RobotIO
 org/firstinspires/ftc/teamcode/subsystems/Drivetrain.java
  org.firstinspires.ftc.teamcode.subsystems.Drivetrain
 org/firstinspires/ftc/teamcode/HardwareMap.java

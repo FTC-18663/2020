@@ -36,9 +36,9 @@ public class Arm extends OpMode {
 
     public Arm(com.qualcomm.robotcore.hardware.HardwareMap hM) {
 
-        hM.get(DcMotor.class, Constants.Arm.ARM0);
-        hM.get(DcMotor.class,Constants.Arm.ARM1);
-        hM.get(TouchSensor.class,Constants.Sensors.ARM_RESET);
+        arm0 = hM.get(DcMotor.class, Constants.Arm.ARM0);
+        arm1 = hM.get(DcMotor.class,Constants.Arm.ARM1);
+        reset = hM.get(TouchSensor.class,Constants.Sensors.ARM_RESET);
 
         ourPID = new PID(0.4, 0.000, 0.00);
         runtime.reset();

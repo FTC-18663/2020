@@ -30,11 +30,6 @@ public class Drivetrain extends OpMode {
         hM.get(DcMotor.class, Constants.Drivetrain.LEFT_DRIVE_REAR);
         hM.get(DcMotor.class, Constants.Drivetrain.RIGHT_DRIVE_REAR);
 
-        leftDriveF.setDirection(DcMotorSimple.Direction.FORWARD);
-        rightDriveF.setDirection(DcMotorSimple.Direction.FORWARD);
-        leftDriveR.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightDriveR.setDirection(DcMotorSimple.Direction.REVERSE);
-
     }
 
     @Override
@@ -50,6 +45,9 @@ public class Drivetrain extends OpMode {
     }
 
     public void setDrive(double fwd, double rot, double maxSpeed){
+
+        configMotorDirection();
+
         double leftPower = (fwd - rot) * maxSpeed;
         double rightPower = (fwd + rot) * maxSpeed;
 
@@ -59,6 +57,13 @@ public class Drivetrain extends OpMode {
         rightDriveR.setPower(rightPower);
 
        // telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
+    }
+
+    public void configMotorDirection() {
+        leftDriveF.setDirection(DcMotor.Direction.FORWARD);
+        rightDriveF.setDirection(DcMotor.Direction.FORWARD);
+        leftDriveR.setDirection(DcMotor.Direction.REVERSE);
+        rightDriveR.setDirection(DcMotor.Direction.REVERSE);
     }
 
     public void setEncoderMode() {

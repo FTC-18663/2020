@@ -65,11 +65,11 @@ public class Robot extends OpMode
     public static ElapsedTime runtime = new ElapsedTime();
 
     //public static HardwareMap robotMap = new HardwareMap();
-    public static Drivetrain m_drive = null;
-    public static Arm m_arm = null;
-    public static Distance m_distanceSensor = null;
-    public static Stage m_stage = null;
-    public RobotIO m_io = null;
+    public static Drivetrain m_drive;
+    public static Arm m_arm;
+    public static Distance m_distanceSensor;
+    public static Stage m_stage;
+    public RobotIO m_io;
 
 
 
@@ -167,7 +167,7 @@ public class Robot extends OpMode
      */
     @Override
     public void stop() {
-        m_drive.stop();
+        //m_drive.stop();
     }
 
 }

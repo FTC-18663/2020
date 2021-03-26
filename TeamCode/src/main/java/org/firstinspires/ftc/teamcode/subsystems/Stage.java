@@ -30,7 +30,7 @@ public class Stage extends OpMode {
     }
 
 
-    public void sweeper(boolean button,boolean button2) {
+    public void stage(boolean button,boolean button2) {
         stage0.setDirection(Servo.Direction.FORWARD);
         stage1.setDirection(Servo.Direction.REVERSE);
 

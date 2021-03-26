@@ -147,6 +147,9 @@ public class Robot extends OpMode
 ////
 ////        m_arm.resetOffset(gamepad1.dpad_left);
 
+        telemetry.addData("Position0", m_arm.getarm0Position());
+        telemetry.addData("Position1", m_arm.getarm1Position());
+
 
 
 

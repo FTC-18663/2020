@@ -47,31 +47,20 @@ public class Arm extends OpMode {
 //        Robot.robotMap.arm0.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 //        Robot.robotMap.arm1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        arm0.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        arm1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        arm0.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        arm1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        arm0.setDirection(DcMotor.Direction.REVERSE);
-        arm1.setDirection(DcMotor.Direction.REVERSE);
 
     }
 
     @Override
     public void init() {
 
-        telemetry.addData("Position", arm0.getCurrentPosition());
+
 
     }
 
     @Override
     public void loop() {
 
-        telemetry.addData("Position0", arm0.getCurrentPosition());
-        telemetry.addData("Position1", arm1.getCurrentPosition());
-        telemetry.addData("PID", getCalcPID());
-        telemetry.addData("Error", getArmError());
     }
 
     public double getCalcPID() {
@@ -99,7 +88,23 @@ public class Arm extends OpMode {
     }
 
 
+    private void armConfig() {
+        arm0.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        arm1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        arm0.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        arm1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        arm0.setDirection(DcMotor.Direction.REVERSE);
+        arm1.setDirection(DcMotor.Direction.REVERSE);
+    }
+
+
+
     public void setArm(boolean up, boolean down, boolean lb, boolean rb, double speed){
+
+
+        armConfig();
 
         double launchSpeed = speed * 1.6;
         double upSpeed = speed * 0.25;
@@ -186,6 +191,15 @@ public class Arm extends OpMode {
 //        Robot.robotMap.arm.setPower(0.25);
 
     }
+
+    public int getarm0Position() {
+        return arm0.getCurrentPosition();
+    }
+
+    public int getarm1Position() {
+        return arm1.getCurrentPosition();
+    }
+
 
     public void resetOffset(boolean reset) {
         if(reset) {

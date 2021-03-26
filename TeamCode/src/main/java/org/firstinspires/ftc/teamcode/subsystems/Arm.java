@@ -53,8 +53,8 @@ public class Arm extends OpMode {
         arm0.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         arm1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        arm0.setDirection(DcMotorSimple.Direction.REVERSE);
-        arm1.setDirection(DcMotorSimple.Direction.REVERSE);
+        arm0.setDirection(DcMotor.Direction.REVERSE);
+        arm1.setDirection(DcMotor.Direction.REVERSE);
 
     }
 
@@ -92,6 +92,10 @@ public class Arm extends OpMode {
 
     public double getAvg() {
         return beforeTargetValue;
+    }
+
+    public void configMotorDirection() {
+
     }
 
 

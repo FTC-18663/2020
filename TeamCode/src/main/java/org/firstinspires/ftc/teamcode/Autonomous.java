@@ -137,18 +137,6 @@ public class Autonomous extends OpMode
         m_drive.encoderDrive(0.5,36, 36, 10);
 
 
-//        if(gamepad2.right_bumper) {
-////            m_drive.setDrive(gamepad2.left_stick_y, gamepad2.right_stick_x, 0.40);
-////        } else {
-////            m_drive.setDrive(gamepad2.left_stick_y, gamepad2.right_stick_x, 1.00);
-////        }
-////
-////
-////
-////        m_arm.setArm(gamepad1.dpad_up, gamepad1.dpad_down, gamepad1.left_bumper, gamepad1.right_bumper,0.5);
-////
-////        m_arm.resetOffset(gamepad1.dpad_left);
-
         telemetry.addData("Position0", m_arm.getarm0Position());
         telemetry.addData("Position1", m_arm.getarm1Position());
 

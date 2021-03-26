@@ -13,7 +13,7 @@ public class Distance extends OpMode {
     private DistanceSensor distanceSensor = null;
 
     public Distance(com.qualcomm.robotcore.hardware.HardwareMap hM) {
-        hM.get(DistanceSensor.class, Constants.Sensors.DISTANCE_SENSOR);
+        distanceSensor = hM.get(DistanceSensor.class, Constants.Sensors.DISTANCE_SENSOR);
     }
 
     @Override

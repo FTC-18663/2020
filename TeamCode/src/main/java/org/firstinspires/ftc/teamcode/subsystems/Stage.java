@@ -13,11 +13,10 @@ public class Stage extends OpMode {
 
     public Stage(com.qualcomm.robotcore.hardware.HardwareMap hM) {
 
-        hM.get(Servo.class, Constants.Stage.STAGE0);
-        hM.get(Servo.class, Constants.Stage.STAGE1);
+        stage0 = hM.get(Servo.class, Constants.Stage.STAGE0);
+        stage1 = hM.get(Servo.class, Constants.Stage.STAGE1);
 
-        stage0.setDirection(Servo.Direction.FORWARD);
-        stage1.setDirection(Servo.Direction.REVERSE);
+
     }
 
     @Override
@@ -32,6 +31,9 @@ public class Stage extends OpMode {
 
 
     public void sweeper(boolean button,boolean button2) {
+        stage0.setDirection(Servo.Direction.FORWARD);
+        stage1.setDirection(Servo.Direction.REVERSE);
+
         if (button) {
             stage0.setPosition(0.25);
         }

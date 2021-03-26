@@ -18,17 +18,17 @@ public class Drivetrain extends OpMode {
     private static final double DRIVE_SPEED             = 0.6;
     private static final double TURN_SPEED              = 0.5;
 
-    private DcMotor leftDriveF  = null;
+    private DcMotor leftDriveF = null;
     private DcMotor rightDriveF = null;
     private DcMotor leftDriveR = null;
     private DcMotor rightDriveR = null;
 
     public Drivetrain(com.qualcomm.robotcore.hardware.HardwareMap hM) {
 
-        hM.get(DcMotor.class, Constants.Drivetrain.LEFT_DRIVE_FRONT);
-        hM.get(DcMotor.class, Constants.Drivetrain.RIGHT_DRIVE_FRONT);
-        hM.get(DcMotor.class, Constants.Drivetrain.LEFT_DRIVE_REAR);
-        hM.get(DcMotor.class, Constants.Drivetrain.RIGHT_DRIVE_REAR);
+        leftDriveF = hM.get(DcMotor.class, Constants.Drivetrain.LEFT_DRIVE_FRONT);
+        rightDriveF = hM.get(DcMotor.class, Constants.Drivetrain.RIGHT_DRIVE_FRONT);
+        leftDriveR = hM.get(DcMotor.class, Constants.Drivetrain.LEFT_DRIVE_REAR);
+        rightDriveR = hM.get(DcMotor.class, Constants.Drivetrain.RIGHT_DRIVE_REAR);
 
     }
 

@@ -29,12 +29,18 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import android.text.method.Touch;
+
+import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.Camera;
+import org.firstinspires.ftc.robotcore.internal.network.ControlHubDeviceNameManager;
 
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
 
@@ -60,11 +66,18 @@ public class HardwareMap
     public DcMotor leftDriveF = null;//  = opMode.hardwareMap.get(DcMotor.class, "left_drive0");
     public DcMotor rightDriveF = null;// = opMode.hardwareMap.get(DcMotor.class, "right_drive1");
     public DcMotor leftDriveR = null;// = opMode.hardwareMap.get(DcMotor.class, "left_drive2");
-
-    public  DcMotor rightDriveR = null;// = opMode.hardwareMap.get(DcMotor.class, "right_dri
-    public DcMotor arm = null;
-    public DcMotor wrist = null;
-    public DcMotor carousel = null;
+    public DcMotor rightDriveR = null;// = opMode.hardwareMap.get(DcMotor.class, "right_drive2");
+    public DcMotor arm0 = null;
+    public DcMotor arm1 = null;
+    public TouchSensor reset = null;
+    public DistanceSensor distanceSensor = null;
+    public DcMotor shooter0 = null;
+    public DcMotor shooter1 = null;
+    public DcMotor intake = null;
+    public Servo stage1 = null;
+    public Servo stage2 = null;
+    //public DcMotor wrist = null;
+    //public DcMotor carousel = null;
 
     /* local OpMode members. */
     com.qualcomm.robotcore.hardware.HardwareMap hwMap = null;
@@ -85,8 +98,19 @@ public class HardwareMap
         rightDriveF = hwMap.get(DcMotor.class, "right_drive1");
         leftDriveR = hwMap.get(DcMotor.class, "left_drive2");
         rightDriveR = hwMap.get(DcMotor.class, "right_drive3");
-        arm  = hwMap.get(DcMotor.class, "arm");
-        wrist  = hwMap.get(DcMotor.class, "wrist");
+        arm0 = hwMap.get(DcMotor.class, "arm0");
+        arm1 = hwMap.get(DcMotor.class,"arm1");
+        reset = hwMap.get(TouchSensor.class,"reset");
+        distanceSensor = hwMap.get(DistanceSensor.class, "sense");
+
+        shooter0 = hwMap.get(DcMotor.class, "shooter0");
+        shooter1 = hwMap.get(DcMotor.class, "shooter1");
+        intake = hwMap.get(DcMotor.class, "intake");
+
+        stage1 = hwMap.get(Servo.class, "stage1");
+        stage2 = hwMap.get(Servo.class, "stage2");
+
+        //wrist  = hwMap.get(DcMotor.class, "wrist");
 
 
         //leftArm    = hwMap.get(DcMotor.class, "left_arm");
@@ -98,8 +122,9 @@ public class HardwareMap
         rightDriveF.setPower(0.00);
         leftDriveR.setPower(0.00);
         rightDriveR.setPower(0.00);
-        arm.setPower(0.0);
-        wrist.setPower(0.0);
+        arm0.setPower(0.0);
+        arm1.setPower(0.0);
+        //wrist.setPower(0.0);
 
         //leftArm.setPower(0);
 

@@ -29,12 +29,14 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
+
+import org.firstinspires.ftc.teamcode.subsystems.Arm;
+import org.firstinspires.ftc.teamcode.subsystems.Distance;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.Stage;
 
 /**
  * This file contains an example of an iterative (Non-Linear) "OpMode".
@@ -54,14 +56,21 @@ import com.qualcomm.robotcore.util.Range;
 //@Disabled
 public class Robot extends OpMode
 {
-    // Declare OpMode members.
-    private ElapsedTime runtime = new ElapsedTime();
 
-    private Drivetrain drive;
-    public static HardwareMap robotMap = new HardwareMap();
-    private Arm arm;
-    private Wrist wrist;
-    private Carousel carousel;
+    //HardwareMap robot = new HardwareMap();
+
+
+
+    // Declare OpMode members.
+    public static ElapsedTime runtime = new ElapsedTime();
+
+    //public static HardwareMap robotMap = new HardwareMap();
+    public static Drivetrain m_drive;
+    public static Arm m_arm;
+    public static Distance m_distanceSensor;
+    public static Stage m_stage;
+    public RobotIO m_io;
+
 
 
     /*
@@ -69,15 +78,24 @@ public class Robot extends OpMode
      */
     @Override
     public void init() {
+
+
+
         telemetry.addData("Status", "Initialized");
-        robotMap.init(hardwareMap);
-        drive = new Drivetrain();
-        arm = new Arm();
-        wrist = new Wrist();
-        carousel = new Carousel();
+
+
+        m_drive = new Drivetrain(hardwareMap);
+        m_arm = new Arm(hardwareMap);
+        m_distanceSensor = new Distance(hardwareMap);
+        m_stage = new Stage(hardwareMap);
+
+        m_io = new RobotIO();
+        m_io.init();
 
         //drive.init();
-        drive.stop();
+        m_drive.stop();
+
+
 
 
         // Initialize the hardware variables. Note that the strings used here as parameters
@@ -98,6 +116,7 @@ public class Robot extends OpMode
      */
     @Override
     public void init_loop() {
+        //telemetry.addData("Position", Robot.robot.arm0.getCurrentPosition());
     }
 
     /*
@@ -114,12 +133,32 @@ public class Robot extends OpMode
     @Override
     public void loop() {
 
-        drive.setDrive(gamepad1.left_stick_y, gamepad1.left_stick_x, 1.00);
-        arm.setArm(gamepad1.right_trigger, gamepad1.left_trigger, 1.00);
-        wrist.setWrist(gamepad1.dpad_up, gamepad1.dpad_down, 1.00);
-        carousel.setCarousel(gamepad1.x, 1.00);
+
+        if(gamepad2.right_bumper) {
+            m_drive.setDrive(gamepad2.left_stick_y, gamepad2.right_stick_x, 0.40);
+        } else {
+            m_drive.setDrive(gamepad2.left_stick_y, gamepad2.right_stick_x, 1.00);
+        }
+
+        m_arm.setArm(gamepad1.dpad_up, gamepad1.dpad_down, gamepad1.left_bumper, gamepad1.right_bumper,0.5);
+
+        m_arm.resetOffset(gamepad1.dpad_left);
+        m_stage.stage(gamepad1.a, gamepad1.b);
 
 
+        telemetry.addData("Position0", m_arm.getarm0Position());
+        telemetry.addData("Position1", m_arm.getarm1Position());
+
+
+
+
+
+//        telemetry.addData("Position0", Robot.robot.arm0.getCurrentPosition());
+//        telemetry.addData("Position1", Robot.robot.arm1.getCurrentPosition());
+//        telemetry.addData("PID", m_arm.getCalcPID());
+//        telemetry.addData("Error", m_arm.getArmError());
+//        telemetry.addData("Distance", m_distanceSensor.getDistance() + "M");
+//        telemetry.addData("Avg", m_arm.getAvg());
         // Show the elapsed game time and wheel power.
         //telemetry.addData("Status", "Run Time: " + runtime.toString());
 //        telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
@@ -130,7 +169,7 @@ public class Robot extends OpMode
      */
     @Override
     public void stop() {
-        drive.stop();
+        //m_drive.stop();
     }
 
 }

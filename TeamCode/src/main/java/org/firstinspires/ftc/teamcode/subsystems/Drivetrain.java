@@ -110,13 +110,6 @@ public class Drivetrain extends OpMode {
             // always end the motion as soon as possible.
             // However, if you require that BOTH motors have finished their moves before the robot continues
             // onto the next step, use (isBusy() || isBusy()) in the loop test.
-            while ((Robot.runtime.seconds() < timeoutS) && (leftDriveF.isBusy() && rightDriveF.isBusy())) {
-
-                // Display it for the driver.
-//                Robot.telemetry.addData("Path1",  "Running to %7d :%7d", newLeftTarget,  newRightTarget);
-//                Robot.telemetry.addData("Path2",  "Running at %7d :%7d", Robot.robot.leftDriveF.getCurrentPosition(), Robot.robot.rightDriveF.getCurrentPosition());
-//                telemetry.update();
-            }
 
             // Stop all motion;
             stop();

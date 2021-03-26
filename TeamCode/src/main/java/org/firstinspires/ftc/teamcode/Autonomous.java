@@ -29,96 +29,150 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.helpers.Constants;
+import org.firstinspires.ftc.teamcode.subsystems.Arm;
+import org.firstinspires.ftc.teamcode.subsystems.Distance;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.Stage;
 
 /**
- * This file illustrates the concept of driving a path based on encoder counts.
- * It uses the common Pushbot hardware class to define the drive on the robot.
- * The code is structured as a LinearOpMode
+ * This file contains an example of an iterative (Non-Linear) "OpMode".
+ * An OpMode is a 'program' that runs in either the autonomous or the teleop period of an FTC match.
+ * The names of OpModes appear on the menu of the FTC Driver Station.
+ * When an selection is made from the menu, the corresponding OpMode
+ * class is instantiated on the Robot Controller and executed.
  *
- * The code REQUIRES that you DO have encoders on the wheels,
- *   otherwise you would use: PushbotAutoDriveByTime;
- *
- *  This code ALSO requires that the drive Motors have been configured such that a positive
- *  power command moves them forwards, and causes the encoders to count UP.
- *
- *   The desired path in this example is:
- *   - Drive forward for 48 inches
- *   - Spin right for 12 Inches
- *   - Drive Backwards for 24 inches
- *   - Stop and close the claw.
- *
- *  The code is written using a method called: encoderDrive(speed, leftInches, rightInches, timeoutS)
- *  that performs the actual movement.
- *  This methods assumes that each movement is relative to the last stopping place.
- *  There are other ways to perform encoder based moves, but this method is probably the simplest.
- *  This code uses the RUN_TO_POSITION mode to enable the Motor controllers to generate the run profile
+ * This particular OpMode just executes a basic Tank Drive Teleop for a two wheeled robot
+ * It includes all the skeletal structure that all iterative OpModes contain.
  *
  * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Autonomous Robot", group="Pushbot")
+@TeleOp(name="Robot", group="Iterative Opmode")
 //@Disabled
-public class Autonomous extends LinearOpMode {
+public class Autonomous extends OpMode
+{
 
-    /* Declare OpMode members. */
+    //HardwareMap robot = new HardwareMap();
 
-    private ElapsedTime runtime = new ElapsedTime();
 
+
+    // Declare OpMode members.
+    public static ElapsedTime runtime = new ElapsedTime();
+
+    //public static HardwareMap robotMap = new HardwareMap();
+    public static Drivetrain m_drive;
+    public static Arm m_arm;
+    public static Distance m_distanceSensor;
+    public static Stage m_stage;
+    public RobotIO m_io;
+
+
+
+    /*
+     * Code to run ONCE when the driver hits INIT
+     */
     @Override
-    public void runOpMode() {
-
-        // Declare OpMode members.
-        ElapsedTime runtime = new ElapsedTime();
-
-
-        Drivetrain m_drive = new Drivetrain(hardwareMap);
-        //DistanceSensor m_distanceSensor = new DistanceSensor();
-        //Sweep m_sweep = ;
+    public void init() {
 
 
 
-        /*
-         * Initialize the drive system variables.
-         * The init() method of the hardware class does all the work here
-         */
+        telemetry.addData("Status", "Initialized");
 
-        // Send telemetry message to signify robot waiting;
-        telemetry.addData("Status", "Resetting Encoders");    //
-        telemetry.update();
 
-        m_drive.setEncoderMode();
+        m_drive = new Drivetrain(hardwareMap);
+        m_arm = new Arm(hardwareMap);
+        m_distanceSensor = new Distance(hardwareMap);
+        m_stage = new Stage(hardwareMap);
 
-        // Send telemetry message to indicate successful Encoder reset
-//        telemetry.addData("Path0",  "Starting at %7d :%7d",
-//                          leftDriveF.getCurrentPosition(),
-//                          rightDriveF.getCurrentPosition());
-        telemetry.update();
+        m_io = new RobotIO();
+        m_io.init();
 
-        // Wait for the game to start (driver presses PLAY)
-        waitForStart();
+        //drive.init();
+        m_drive.stop();
 
-        // Step through each leg of the path,
-        // Note: Reverse movement is obtained by setting a negative distance (not speed)
-        m_drive.encoderDrive(Constants.Drive.DRIVE_SPEED,  48,  48, 5.0);  // S1: Forward 47 Inches with 5 Sec timeout
-        m_drive.encoderDrive(Constants.Drive.TURN_SPEED,   12, -12, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
-        m_drive.encoderDrive(Constants.Drive.DRIVE_SPEED, -24, -24, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout
 
-        telemetry.addData("Path", "Complete");
-        telemetry.update();
+
+
+        // Initialize the hardware variables. Note that the strings used here as parameters
+        // to 'get' must correspond to the names assigned during the robot configuration
+        // step (using the FTC Robot Controller app on the phone).
+
+
+        // Most robots need the motor on one side to be reversed to drive forward
+        // Reverse the motor that runs backwards when connected directly to the battery
+
+
+        // Tell the driver that initialization is complete.
+        telemetry.addData("Status", "Initialized");
     }
 
     /*
-     *  Method to perform a relative move, based on encoder counts.
-     *  Encoders are not reset as the move is based on the current position.
-     *  Move will stop if any of three conditions occur:
-     *  1) Move gets to the desired position
-     *  2) Move runs out of time
-     *  3) Driver stops the opmode running.
+     * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY
      */
+    @Override
+    public void init_loop() {
+        //telemetry.addData("Position", Robot.robot.arm0.getCurrentPosition());
+    }
+
+    /*
+     * Code to run ONCE when the driver hits PLAY
+     */
+    @Override
+    public void start() {
+        runtime.reset();
+    }
+
+    /*
+     * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
+     */
+    @Override
+    public void loop() {
+
+
+        m_drive.encoderDrive(0.5,36, 36, 10);
+
+
+//        if(gamepad2.right_bumper) {
+////            m_drive.setDrive(gamepad2.left_stick_y, gamepad2.right_stick_x, 0.40);
+////        } else {
+////            m_drive.setDrive(gamepad2.left_stick_y, gamepad2.right_stick_x, 1.00);
+////        }
+////
+////
+////
+////        m_arm.setArm(gamepad1.dpad_up, gamepad1.dpad_down, gamepad1.left_bumper, gamepad1.right_bumper,0.5);
+////
+////        m_arm.resetOffset(gamepad1.dpad_left);
+
+        telemetry.addData("Position0", m_arm.getarm0Position());
+        telemetry.addData("Position1", m_arm.getarm1Position());
+
+
+
+
+
+//        telemetry.addData("Position0", Robot.robot.arm0.getCurrentPosition());
+//        telemetry.addData("Position1", Robot.robot.arm1.getCurrentPosition());
+//        telemetry.addData("PID", m_arm.getCalcPID());
+//        telemetry.addData("Error", m_arm.getArmError());
+//        telemetry.addData("Distance", m_distanceSensor.getDistance() + "M");
+//        telemetry.addData("Avg", m_arm.getAvg());
+        // Show the elapsed game time and wheel power.
+        //telemetry.addData("Status", "Run Time: " + runtime.toString());
+//        telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
+    }
+
+    /*
+     * Code to run ONCE after the driver hits STOP
+     */
+    @Override
+    public void stop() {
+        //m_drive.stop();
+    }
+
 }

@@ -17,7 +17,7 @@ import java.nio.charset.CharsetDecoder;
 
 public class Arm extends OpMode {
 
-    private int launchPosition = -130;
+    private int launchPosition = -80;
     private int launchStopShort = -343;
     private int launchStopLong = -343;
 

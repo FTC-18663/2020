@@ -29,8 +29,9 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
@@ -52,9 +53,9 @@ import org.firstinspires.ftc.teamcode.subsystems.Stage;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Robot", group="Iterative Opmode")
+@Autonomous(name="RobotAutoL", group="Iterative Opmode")
 //@Disabled
-public class Autonomous extends OpMode
+public class RobotAutonomouslinear extends LinearOpMode
 {
 
     //HardwareMap robot = new HardwareMap();
@@ -64,6 +65,8 @@ public class Autonomous extends OpMode
     // Declare OpMode members.
     public static ElapsedTime runtime = new ElapsedTime();
 
+    public double time = 0.00;
+
     //public static HardwareMap robotMap = new HardwareMap();
     public static Drivetrain m_drive;
     public static Arm m_arm;
@@ -72,17 +75,10 @@ public class Autonomous extends OpMode
     public RobotIO m_io;
 
 
-
-    /*
-     * Code to run ONCE when the driver hits INIT
-     */
     @Override
-    public void init() {
-
-
+    public void runOpMode() throws InterruptedException {
 
         telemetry.addData("Status", "Initialized");
-
 
         m_drive = new Drivetrain(hardwareMap);
         m_arm = new Arm(hardwareMap);
@@ -92,8 +88,32 @@ public class Autonomous extends OpMode
         m_io = new RobotIO();
         m_io.init();
 
+        telemetry.addData("Status", "Initialized");
+
+        runtime.reset();
+        time = runtime.seconds() + 30;
+        waitForStart();
+
+
+            m_drive.encoderDrive(1.0,15, 15, 15);
+
+            telemetry.addData("Position0", m_arm.getarm0Position());
+            telemetry.addData("Position1", m_arm.getarm1Position());
+
+
+    }
+
+    /*
+     * Code to run ONCE when the driver hits INIT
+     */
+
+
+
+
+
+
         //drive.init();
-        m_drive.stop();
+
 
 
 
@@ -108,37 +128,27 @@ public class Autonomous extends OpMode
 
 
         // Tell the driver that initialization is complete.
-        telemetry.addData("Status", "Initialized");
-    }
+
+
 
     /*
      * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY
      */
-    @Override
-    public void init_loop() {
-        //telemetry.addData("Position", Robot.robot.arm0.getCurrentPosition());
-    }
 
     /*
      * Code to run ONCE when the driver hits PLAY
      */
-    @Override
-    public void start() {
-        runtime.reset();
-    }
+
 
     /*
      * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
      */
-    @Override
-    public void loop() {
 
 
-        m_drive.encoderDrive(0.5,36, 36, 10);
 
 
-        telemetry.addData("Position0", m_arm.getarm0Position());
-        telemetry.addData("Position1", m_arm.getarm1Position());
+
+
 
 
 
@@ -152,15 +162,6 @@ public class Autonomous extends OpMode
 //        telemetry.addData("Avg", m_arm.getAvg());
         // Show the elapsed game time and wheel power.
         //telemetry.addData("Status", "Run Time: " + runtime.toString());
-//        telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
-    }
-
-    /*
-     * Code to run ONCE after the driver hits STOP
-     */
-    @Override
-    public void stop() {
-        //m_drive.stop();
-    }
+//
 
 }

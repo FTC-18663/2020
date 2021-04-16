@@ -18,7 +18,7 @@ import java.nio.charset.CharsetDecoder;
 public class Arm extends OpMode {
 
     private int launchPosition = -80;
-    private int launchStopShort = -343;
+    private int launchStopShort = -370; //old -343
     private int launchStopLong = -343;
 
     private DcMotor arm0 = null;

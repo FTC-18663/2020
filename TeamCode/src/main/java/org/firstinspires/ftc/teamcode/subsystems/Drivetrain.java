@@ -30,6 +30,10 @@ public class Drivetrain extends OpMode {
         leftDriveR = hM.get(DcMotor.class, Constants.Drivetrain.LEFT_DRIVE_REAR);
         rightDriveR = hM.get(DcMotor.class, Constants.Drivetrain.RIGHT_DRIVE_REAR);
 
+        leftDriveF.setDirection(DcMotor.Direction.FORWARD);
+        rightDriveF.setDirection(DcMotor.Direction.REVERSE);
+        leftDriveR.setDirection(DcMotor.Direction.FORWARD);
+        rightDriveR.setDirection(DcMotor.Direction.REVERSE);
     }
 
     @Override
@@ -46,7 +50,9 @@ public class Drivetrain extends OpMode {
 
     public void setDrive(double fwd, double rot, double maxSpeed){
 
-        configMotorDirection();
+        //configMotorDirection();
+
+
 
         double leftPower = (fwd - rot) * maxSpeed;
         double rightPower = (fwd + rot) * maxSpeed;
@@ -61,8 +67,8 @@ public class Drivetrain extends OpMode {
 
     public void configMotorDirection() {
         leftDriveF.setDirection(DcMotor.Direction.FORWARD);
-        rightDriveF.setDirection(DcMotor.Direction.FORWARD);
-        leftDriveR.setDirection(DcMotor.Direction.REVERSE);
+        rightDriveF.setDirection(DcMotor.Direction.REVERSE);
+        leftDriveR.setDirection(DcMotor.Direction.FORWARD);
         rightDriveR.setDirection(DcMotor.Direction.REVERSE);
     }
 
@@ -78,7 +84,7 @@ public class Drivetrain extends OpMode {
         rightDriveR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
-    public void encoderDrive(double speed, double leftInches, double rightInches, double timeoutS) {
+    public void encoderDrive(double speed, double leftInches, double rightInches, double timeOut) {
         int newLeftTarget;
         int newRightTarget;
 
@@ -97,6 +103,7 @@ public class Drivetrain extends OpMode {
             leftDriveF.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             rightDriveF.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+
             // reset the timeout time and start motion.
             Robot.runtime.reset();
             leftDriveF.setPower(Math.abs(speed));
@@ -112,7 +119,7 @@ public class Drivetrain extends OpMode {
             // onto the next step, use (isBusy() || isBusy()) in the loop test.
 
             // Stop all motion;
-            stop();
+            //stop();
 
             // Turn off RUN_TO_POSITION
             leftDriveF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

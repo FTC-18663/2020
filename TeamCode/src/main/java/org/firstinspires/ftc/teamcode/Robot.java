@@ -133,7 +133,7 @@ public class Robot extends OpMode
     @Override
     public void loop() {
 
-
+        //m_drive.setEncoderMode();
         if(gamepad2.right_bumper) {
             m_drive.setDrive(gamepad2.left_stick_y, gamepad2.right_stick_x, 0.40);
         } else {

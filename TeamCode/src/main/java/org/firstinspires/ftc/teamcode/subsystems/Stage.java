@@ -32,7 +32,7 @@ public class Stage extends OpMode {
 
     public void stage(boolean button,boolean button2) {
         stage0.setDirection(Servo.Direction.FORWARD);
-        stage1.setDirection(Servo.Direction.REVERSE);
+        stage1.setDirection(Servo.Direction.FORWARD);
 
         if (button) {
             stage0.setPosition(0.25);

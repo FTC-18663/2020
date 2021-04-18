@@ -37,6 +37,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 import org.firstinspires.ftc.teamcode.helpers.Constants;
+import org.firstinspires.ftc.teamcode.subsystems.Arm;
 
 /**
  * This file illustrates the concept of driving a path based on encoder counts.
@@ -75,6 +76,9 @@ public class AutoLinear extends LinearOpMode {
     private DcMotor leftDriveR = null;
     private DcMotor rightDriveR = null;
 
+    private Arm m_arm = null;
+
+    private double time = 0.00;
     private ElapsedTime     runtime = new ElapsedTime();
 
     static final double     COUNTS_PER_MOTOR_REV    = 6000 ;    // eg: TETRIX Motor Encoder
@@ -92,6 +96,9 @@ public class AutoLinear extends LinearOpMode {
          * Initialize the drive system variables.
          * The init() method of the hardware class does all the work here
          */
+        m_arm = new Arm(hardwareMap);
+        time = runtime.seconds() + 1;
+
         leftDriveF = hardwareMap.get(DcMotor.class, Constants.Drivetrain.LEFT_DRIVE_FRONT);
         rightDriveF = hardwareMap.get(DcMotor.class, Constants.Drivetrain.RIGHT_DRIVE_FRONT);
         leftDriveR = hardwareMap.get(DcMotor.class, Constants.Drivetrain.LEFT_DRIVE_REAR);
@@ -112,6 +119,8 @@ public class AutoLinear extends LinearOpMode {
         leftDriveR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightDriveR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+        m_arm.resetOffset(true);
+
         // Send telemetry message to indicate successful Encoder reset
         telemetry.addData("Path0",  "Starting at %7d :%7d",
                           leftDriveF.getCurrentPosition(),
@@ -123,6 +132,11 @@ public class AutoLinear extends LinearOpMode {
 
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
+
+        m_arm.setArm(true, false, false, false,0.5);
+        sleep(500);
+        m_arm.setArm(false, false, false, false, 0.00);
+
         encoderDrive(DRIVE_SPEED,  75,  75, 5.0);  // S1: Forward 47 Inches with 5 Sec timeout
         //encoderDrive(TURN_SPEED,   -12, 12, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
         //encoderDrive(DRIVE_SPEED, 24, 24, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout
@@ -133,6 +147,7 @@ public class AutoLinear extends LinearOpMode {
         //sleep(1000);     // pause for servos to move
 
         telemetry.addData("Path", "Complete");
+        telemetry.addData("ArmPos", m_arm.getarm1Position());
         telemetry.update();
     }
 

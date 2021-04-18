@@ -17,9 +17,9 @@ import java.nio.charset.CharsetDecoder;
 
 public class Arm extends OpMode {
 
-    private int launchPosition = -80;
-    private int launchStopShort = -370; //old -343
-    private int launchStopLong = -343;
+    private int launchPosition = -140;
+    private int launchStopShort = -343; //old -343
+    private int launchStopLong = -370;
 
     private DcMotor arm0 = null;
     private DcMotor arm1 = null;
@@ -114,7 +114,8 @@ public class Arm extends OpMode {
 
         //boolean beforeTarget = beforeTargetValue <= launchStopShort;
 
-        boolean beforeTarget = -arm1.getCurrentPosition() <= launchStopShort;
+        boolean shorter = -arm1.getCurrentPosition() <= launchStopShort;
+        boolean longer = -arm1.getCurrentPosition() <= launchStopLong;
 
 
         if(up) {
@@ -130,7 +131,7 @@ public class Arm extends OpMode {
             arm0.setPower(downSpeed);
             arm1.setPower(-downSpeed);
         } else if (lb) {
-            if (beforeTarget) {
+            if (shorter) { //longer
                 stop();
             } else {
                 // set launch power
@@ -138,7 +139,7 @@ public class Arm extends OpMode {
                 arm1.setPower(launchSpeed);
             }
         } else if(rb) {
-            if (beforeTarget) {
+            if (shorter) {
                 stop();
             } else {
                 // set launch power

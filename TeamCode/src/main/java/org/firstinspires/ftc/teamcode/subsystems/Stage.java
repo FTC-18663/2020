@@ -38,7 +38,7 @@ public class Stage extends OpMode {
             stage0.setPosition(0.25);
         }
         if (button2) {
-            stage1.setPosition(0.25);
+            stage1.setPosition(-0.25);
         }
     }
 

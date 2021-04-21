@@ -29,8 +29,11 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.rev.RevSPARKMini;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
@@ -69,6 +72,8 @@ public class Robot extends OpMode
     public static Arm m_arm;
     public static Distance m_distanceSensor;
     public static Stage m_stage;
+    public static VoltageSensor m_voltage;
+
     public RobotIO m_io;
 
 
@@ -88,6 +93,9 @@ public class Robot extends OpMode
         m_arm = new Arm(hardwareMap);
         m_distanceSensor = new Distance(hardwareMap);
         m_stage = new Stage(hardwareMap);
+        //m_voltage = hardwareMap.voltageSensor.get("armspark");
+
+
 
         m_io = new RobotIO();
         m_io.init();
@@ -148,6 +156,8 @@ public class Robot extends OpMode
 
         telemetry.addData("Position0", m_arm.getarm0Position());
         telemetry.addData("Position1", m_arm.getarm1Position());
+        telemetry.addData("Data0", m_arm.getarm0Connection());
+        telemetry.addData("Power0", m_arm.getarm0Power());
 
 
 

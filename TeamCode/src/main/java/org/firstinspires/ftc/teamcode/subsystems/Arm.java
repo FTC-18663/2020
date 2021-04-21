@@ -89,6 +89,7 @@ public class Arm extends OpMode {
 
 
     private void armConfig() {
+        //arm0.setMode(DcMotor.RunMode.);
         arm0.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         arm1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
@@ -102,6 +103,8 @@ public class Arm extends OpMode {
 
 
     public void setArm(boolean up, boolean down, boolean lb, boolean rb, double speed){
+
+
 
 
         armConfig();
@@ -199,6 +202,14 @@ public class Arm extends OpMode {
 
     public int getarm1Position() {
         return arm1.getCurrentPosition();
+    }
+
+    public String getarm0Connection() {
+        return arm0.getConnectionInfo();
+    }
+
+    public double getarm0Power() {
+        return arm0.getPower();
     }
 
 
